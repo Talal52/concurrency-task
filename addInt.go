@@ -12,9 +12,7 @@ func sum(s []int, c chan int) {
 }
 
 func main(){
-	//s := []int{7, 2, 8, -9, 4, 0}
 	s:=[]int {8,38,99,96,30,55,11,35,29,40,2,94}
-	//strings.Fields(string(s))
 
 
 	c := make(chan int)
