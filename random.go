@@ -1,36 +1,32 @@
-// package main
-
-// import (
-// 	"fmt"
-// 	"strconv"
-// 	)
-	
-// 	func main() {
-// 	  fmt.Println(sum([]any{9, 1, "8", "2"})) // this should output 20
-// 	}
-	
-// 	func sum(arr []any) int {
-// 	  n:=0
-// 	  for _, v := range arr{
-// 		temp:=strconv.Atoi(v) //err: cannot initialize 1 variables with 2 values
-// 		n+=temp //err: mismatched types int and any
-// 	  }
-// 	  return n
-// 	}
-
-
 package main
 
-import "fmt"
+// import ("fmt"
+// )
 
-func main() {
+// func sum(numarray []int,c chan int){
+//     sum:=0
+//     for _,i := range numarray{
+//         sum+=i
+//     }
+//     c <- sum
+// }
 
-    numarray := []int{15, 25, 35, 45, 55, 65, 75}
+// func main() {
 
-    arrSum := 0
+//     numarray := []int{15, 25, 35, 45, 55, 65, 75}
 
-    for _, a := range numarray {
-        arrSum = arrSum + a
-    }
-    fmt.Println("The Sum of Array Items = ", arrSum)
-}
+//     arrSum := 0
+
+//     for _, a := range numarray {
+//         arrSum = arrSum + a
+//     }
+
+//     fmt.Println("The Sum of Array Items = ", arrSum)
+
+//     c :=make(chan int)
+//     go sum(numarray[:len(numarray)/2],c)
+//     go sum(numarray[len(numarray)/2:],c)
+//     x,y := <-c, <-c
+
+//     fmt.Println("sum of array: ", x+y)
+// }
