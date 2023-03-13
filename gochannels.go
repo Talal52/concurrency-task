@@ -13,7 +13,7 @@ var routines = 5
 func addition(arr []string, chunks int, start int, end int) int {
 	sum1 := 0
 	fmt.Println(start, end)
-	arr = arr[start:end]
+	arr = arr[start:end-1]
 	for _, i := range arr {
 		number, err := strconv.Atoi(i)
 		if err != nil {
@@ -41,7 +41,7 @@ func main() {
 		sum := addition(arr, chunks, start, end)
 		start = start + chunks
 		end = end + chunks
-		fmt.Println("final sum: ", sum)
+		fmt.Println("final sum ", i, ": ", sum)
 
 		final = final + sum
 	}
