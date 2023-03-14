@@ -6,14 +6,12 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"sync"
 )
 
 var routines = 5
 
 func addition(arr []string, chunks int, start int, end int, c chan int) {
 	sum1 := 0
-	fmt.Println(start, end)
 	arr = arr[start : end-1]
 	for _, i := range arr {
 		number, err := strconv.Atoi(i)
@@ -22,42 +20,33 @@ func addition(arr []string, chunks int, start int, end int, c chan int) {
 		}
 		sum1 += number
 	}
+	fmt.Println("sum of chunk: ",sum1)
 	c <- sum1
 }
-
 func main() {
 	c := make(chan int)
 	fileData, err := os.ReadFile("text.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	arr := strings.Fields(string(fileData))
 	chunks := len(arr) / routines
-	fmt.Println(chunks)
-	var x sync.WaitGroup
-	x.Add(routines)
+	final := 0
 	start := 0
 	end := chunks
-	for i := 0; i < routines; i++ {
-		go func(i int, start int, end int) {
-			addition(arr, chunks, start, end, c)
-			
-			x.Done()
-		}(i, start, end)
 
+	for i := 0; i < routines; i++ {
+		go addition(arr, chunks, start, end, c)
 		start = start + chunks
 		end = end + chunks
 	}
 
-	go func() {
-		x.Wait()
-		close(c)
-	}()
-
-	final := 0
-	for sum := range c {
-		final = final + sum
+	for j := 0; j < routines; j++ {
+		x := <-c
+		final = final + x
 	}
-
-	fmt.Println("grand sum: ", final)
+	fmt.Println("______________________")
+	fmt.Println("sum of array: ", final)
+	fmt.Println("______________________")
 }
