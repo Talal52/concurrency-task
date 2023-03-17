@@ -53,7 +53,10 @@ func main() {
 	fmt.Println("----------------------")
 
 	filePath := flag.String("file", "", "path to file")
+	var svar string
+    flag.StringVar(&svar, "svar", "bar", "a string var")
 	flag.Parse()
+	fmt.Println("svar: ",svar)
 	fmt.Println("file path: ", *filePath)
 	if *filePath == "" {
 		log.Fatal("file path not provided")
@@ -65,5 +68,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(fileData))
+	//fmt.Println(string(fileData))
 }
